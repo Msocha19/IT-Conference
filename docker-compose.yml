@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  it_conference:
+    container_name: ITConference
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: coferencedb
+      POSTGRES_USER: conferenceuser
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - conference:/var/lib/postgresql/data
+volumes:
+  conference:
