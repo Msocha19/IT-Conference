@@ -1,4 +1,4 @@
-package sii.task.conference.entity;
+package sii.task.conference.entities;
 
 public enum TopicPath {
     SPRING,

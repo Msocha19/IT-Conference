@@ -1,4 +1,4 @@
-package sii.task.conference.entity;
+package sii.task.conference.entities;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -10,7 +10,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
@@ -45,11 +44,11 @@ public class Lecture extends AbstractEntity {
     private TopicPath topicPath;
 
     @NotNull
-    @ManyToMany(cascade = {CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
         name = "lecture_participant",
-        joinColumns = @JoinColumn(name = "lecture_id"),
-        inverseJoinColumns = @JoinColumn(name = "participant_id"),
-        uniqueConstraints = @UniqueConstraint(columnNames = {"lecture_id", "participant_id"}))
-    private Set<Participant> lectures = new HashSet<>();
+        joinColumns = {@JoinColumn(name = "lecture_id")},
+        inverseJoinColumns = {@JoinColumn(name = "participant_id")},
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"lecture_id", "participant_id"})})
+    private Set<Participant> participants = new HashSet<>();
 }

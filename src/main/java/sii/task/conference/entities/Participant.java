@@ -1,4 +1,4 @@
-package sii.task.conference.entity;
+package sii.task.conference.entities;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -9,6 +9,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class Participant extends AbstractEntity {
 
     @NotNull

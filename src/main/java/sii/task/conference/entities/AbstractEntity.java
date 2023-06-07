@@ -1,4 +1,4 @@
-package sii.task.conference.entity;
+package sii.task.conference.entities;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
