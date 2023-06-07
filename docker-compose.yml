@@ -6,8 +6,8 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: coferencedb
-      POSTGRES_USER: conferenceuser
+      POSTGRES_DB: conferencedb
+      POSTGRES_USER: conference
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
