@@ -13,13 +13,13 @@ import sii.task.conference.repositories.LectureRepository;
 @Transactional
 public class LectureService {
 
-    private LectureRepository lectureRepository;
+    private final LectureRepository lectureRepository;
 
-    public List<Lecture> getLectures() {
+    public List<Lecture> getConferenceSchedule() {
         return lectureRepository.findAll();
     }
 
-    public List<Lecture> getParticipantLectures(String login) {
+    public List<Lecture> getParticipantsLectures(String login) {
         return lectureRepository.findLectureByParticipantsLogin(login);
     }
 }

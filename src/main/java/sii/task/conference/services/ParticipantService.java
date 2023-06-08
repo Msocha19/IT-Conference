@@ -13,10 +13,12 @@ import java.util.Set;
 import javax.script.ScriptException;
 
 import jakarta.persistence.OptimisticLockException;
+import lombok.RequiredArgsConstructor;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import sii.task.conference.entities.Lecture;
 import sii.task.conference.entities.Participant;
 import sii.task.conference.exceptions.bad_request.AppBadRequestException;
@@ -33,25 +35,25 @@ import sii.task.conference.repositories.LectureRepository;
 import sii.task.conference.repositories.ParticipantRepository;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
 public class ParticipantService {
 
-    @Autowired
-    private LectureRepository lectureRepository;
+    private final LectureRepository lectureRepository;
 
-    @Autowired
-    private ParticipantRepository participantRepository;
+    private final ParticipantRepository participantRepository;
 
     public void bookLecture(String login, String email, Long lectureId) throws Exception {
         Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(LectureNotFoundException::new);
-        if (lecture.getParticipants().size() == 5) {
-            throw new FullLectureException();
-        }
         Participant participant = participantRepository.findByLogin(login).orElse(new Participant(login, email));
         if (!participant.getEmail().equals(email)) {
             throw new LoginTakenException();
         }
         if (lecture.getParticipants().contains(participant)) {
             throw new LectureAlreadyBookedException();
+        }
+        if (lecture.getParticipants().size() == 5) {
+            throw new FullLectureException();
         }
         if (lectureRepository.findLectureByParticipantsLoginAndDate(
             login,
