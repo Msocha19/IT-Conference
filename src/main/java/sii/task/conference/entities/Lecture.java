@@ -44,6 +44,11 @@ public class Lecture extends AbstractEntity {
     private TopicPath topicPath;
 
     @NotNull
+    @Basic(optional = false)
+    @Column(name = "lecture_limit", nullable = false)
+    private Integer lectureLimit = 5;
+
+    @NotNull
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
         name = "lecture_participant",

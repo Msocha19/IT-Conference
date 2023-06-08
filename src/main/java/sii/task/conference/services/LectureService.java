@@ -15,11 +15,13 @@ public class LectureService {
 
     private final LectureRepository lectureRepository;
 
-    public List<Lecture> getConferenceSchedule() {
+    public List<Lecture> getAllLectures() {
         return lectureRepository.findAll();
     }
 
     public List<Lecture> getParticipantsLectures(String login) {
         return lectureRepository.findLectureByParticipantsLogin(login);
     }
+
+
 }

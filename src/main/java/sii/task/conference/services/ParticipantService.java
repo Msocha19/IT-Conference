@@ -16,6 +16,7 @@ import jakarta.persistence.OptimisticLockException;
 import lombok.RequiredArgsConstructor;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +53,7 @@ public class ParticipantService {
         if (lecture.getParticipants().contains(participant)) {
             throw new LectureAlreadyBookedException();
         }
-        if (lecture.getParticipants().size() == 5) {
+        if (lecture.getParticipants().size() >= lecture.getLectureLimit()) {
             throw new FullLectureException();
         }
         if (lectureRepository.findLectureByParticipantsLoginAndDate(

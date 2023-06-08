@@ -11,18 +11,24 @@ import sii.task.conference.entities.TopicPath;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class LectureDto {
+public class StatisticsPerLectureDto {
+
     private LocalDateTime lectureStart;
     private LocalDateTime lectureEnd;
-    private TopicPath topicPath;
-    private Integer freeSpots;
     private Integer duration;
+    private TopicPath topicPath;
+    private Integer taken;
+    private Integer totalSpots;
+    private String percentageOfTakenSpots;
 
-    public LectureDto(Lecture lecture) {
+    public StatisticsPerLectureDto(Lecture lecture) {
         this.lectureStart = lecture.getLectureDate();
         this.lectureEnd = lecture.getLectureDate().plusMinutes(lecture.getDurationTime());
+        this.taken = lecture.getParticipants().size();
         this.topicPath = lecture.getTopicPath();
-        this.freeSpots = lecture.getLectureLimit() - lecture.getParticipants().size();
+        this.totalSpots = lecture.getLectureLimit();
+        Double percentage = Double.valueOf(this.taken)/Double.valueOf(this.totalSpots) * 100d;
+        this.percentageOfTakenSpots = percentage + "%";
         this.duration = lecture.getDurationTime();
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import sii.task.conference.controllers.dto.response.LectureDto;
+import sii.task.conference.controllers.dto.response.StatisticsPerLectureDto;
 import sii.task.conference.services.LectureService;
 
 @RestController
@@ -24,22 +25,21 @@ public class LectureController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<LectureDto> getConferenceSchedule() {
-        return lectureService.getConferenceSchedule()
-            .stream().map(
-                lecture -> new LectureDto(
-                    lecture.getLectureDate(),
-                    lecture.getLectureDate().plusMinutes(lecture.getDurationTime()),
-                    lecture.getTopicPath())).toList();
+        return lectureService.getAllLectures()
+            .stream().map(LectureDto::new).toList();
     }
 
     @GetMapping("/participant/{login}")
     @ResponseStatus(HttpStatus.OK)
     public List<LectureDto> getParticipantsLectures(@PathVariable("login") @NotBlank String login) {
         return lectureService.getParticipantsLectures(login)
-            .stream().map(
-                lecture -> new LectureDto(
-                    lecture.getLectureDate(),
-                    lecture.getLectureDate().plusMinutes(lecture.getDurationTime()),
-                    lecture.getTopicPath())).toList();
+            .stream().map(LectureDto::new).toList();
+    }
+
+    @GetMapping("/statistics")
+    @ResponseStatus(HttpStatus.OK)
+    public List<StatisticsPerLectureDto> getLectureStatistics() {
+        return lectureService.getAllLectures()
+            .stream().map(StatisticsPerLectureDto::new).toList();
     }
 }
