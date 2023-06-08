@@ -1,3 +1,2 @@
-Date: 2023-06-08T01:47:56.159869600 To: msocha19@interia.plContent: Lecture has been booked.
-Date: 2023-06-08T11:45:05.499667100 To: msocha19@interia.pl Content: Lecture has been booked.
-Date: 2023-06-08T11:47:51.434838400 To: msocha19@interia.pl Content: Lecture has been booked.
+Date: 2023-06-08T12:17:39.281633600 To: msocha19@interia.pl Content: Lecture has been booked.
+Date: 2023-06-08T12:19:31.557829700 To: msocha@interia.pl Content: Lecture has been booked.

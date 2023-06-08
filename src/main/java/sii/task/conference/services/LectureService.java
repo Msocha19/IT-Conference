@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sii.task.conference.entities.Lecture;
-import sii.task.conference.exceptions.not_found.LectureNotFoundException;
 import sii.task.conference.repositories.LectureRepository;
 
 @Service
