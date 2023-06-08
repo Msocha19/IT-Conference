@@ -10,7 +10,6 @@ import sii.task.conference.repositories.LectureRepository;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class LectureService {
 
     private final LectureRepository lectureRepository;

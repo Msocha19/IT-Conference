@@ -61,6 +61,4 @@ public class ParticipantController {
                     participant.getLogin(),
                     participant.getEmail()))).toList();
     }
-
-
 }

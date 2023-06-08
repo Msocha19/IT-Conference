@@ -1,0 +1,3 @@
+Date: 2023-06-08T17:02:04.396918800 To: user@gmail.local Content: Lecture has been booked.
+Date: 2023-06-08T17:14:11.535332 To: user@gmail.local Content: Lecture has been booked.
+Date: 2023-06-08T17:17:55.293002200 To: user@gmail.local Content: Lecture has been booked.

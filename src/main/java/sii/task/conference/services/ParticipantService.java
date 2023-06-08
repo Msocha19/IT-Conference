@@ -3,13 +3,16 @@ package sii.task.conference.services;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLTransactionRollbackException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.OptimisticLockException;
+import jakarta.transaction.TransactionRolledbackException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
 import sii.task.conference.entities.Lecture;
 import sii.task.conference.entities.Participant;
@@ -28,7 +31,6 @@ import sii.task.conference.repositories.ParticipantRepository;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class ParticipantService {
 
     private final LectureRepository lectureRepository;
