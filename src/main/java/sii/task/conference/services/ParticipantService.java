@@ -95,6 +95,10 @@ public class ParticipantService {
         sendMail(participant.getEmail(), "Your booking has been canceled");
     }
 
+    public List<Participant> getAllParticipants() {
+        return participantRepository.findAll();
+    }
+
     public void updateUserEmail(String login, String email) throws Exception {
         Participant participant = participantRepository.findByLogin(login).orElseThrow(ParticipantNotFoundException::new);
         participant.setEmail(email);

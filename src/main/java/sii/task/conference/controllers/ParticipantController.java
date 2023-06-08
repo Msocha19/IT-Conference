@@ -1,5 +1,7 @@
 package sii.task.conference.controllers;
 
+import java.util.List;
+
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -8,6 +10,7 @@ import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,11 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import sii.task.conference.controllers.dto.request.BookLectureDto;
+import sii.task.conference.controllers.dto.response.ParticipantDto;
 import sii.task.conference.services.ParticipantService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/participant")
+@RequestMapping("/participants")
 public class ParticipantController {
 
     private final ParticipantService participantService;
@@ -44,4 +48,19 @@ public class ParticipantController {
                             @PathParam("newEmail") @NotBlank @Email String newEmail) throws Exception {
         participantService.updateUserEmail(login, newEmail);
     }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<ParticipantDto> getParticipants() {
+        return participantService
+            .getAllParticipants()
+            .stream()
+            .map(
+                (participant -> new ParticipantDto(
+                    participant.getId(),
+                    participant.getLogin(),
+                    participant.getEmail()))).toList();
+    }
+
+
 }
