@@ -8,12 +8,18 @@ Wymagania:
 ## Wariant 1 Terminal:
 * Przechodzimy do katalogu głównego projektu, gdzie znajduje się plik docker-compose.yml oraz pom.xml
   1. Wykonujemy ```docker-compose up```
-    ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/6c1003a1-bd0c-483f-8eb4-74aff4b2457b)
-  2. Następnie ```mvn install```
+   
+   ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/6c1003a1-bd0c-483f-8eb4-74aff4b2457b)
+ 
+ 2. Następnie ```mvn install```
+ 
     ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/37aa190e-f08c-470a-bedf-9608d0c142f1)
-  3. Końcowo mvn spring-boot:run
-    ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/1713f2e8-1c5d-4d07-b49b-cd0e8503027f)
- ## Wariant 2 Intellij:
+
+3. Końcowo mvn spring-boot:run
+   
+   ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/1713f2e8-1c5d-4d07-b49b-cd0e8503027f)
+
+## Wariant 2 Intellij:
 * Otwieramy projekt w Intellij
   1. Otwieramy plik docker-compose.yml, i następnie klikamy zieloną strzałkę:
     ![image](https://github.com/Msocha19/Sii-IT-Conference/assets/101000339/5dc143a1-668d-41db-a8b2-d155f01e0115)
