@@ -1,24 +1,19 @@
-package sii.task.conference.controllers.dto;
+package sii.task.conference.controllers.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
-@Getter
-public class BookLectureDto {
+@AllArgsConstructor
+public class CancelLectureDto {
 
     @NotNull
-    @Positive
     private Long id;
 
     @NotBlank
     private String login;
-
-    @NotBlank
-    private String email;
 }

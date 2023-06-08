@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import jakarta.persistence.OptimisticLockException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import sii.task.conference.exceptions.conflict.AppOptimisticLockException;
 import sii.task.conference.exceptions.conflict.CollidingLecturesBookingException;
 import sii.task.conference.exceptions.conflict.FullLectureException;
 import sii.task.conference.exceptions.conflict.LectureAlreadyBookedException;
+import sii.task.conference.exceptions.conflict.NoReservationException;
 import sii.task.conference.exceptions.not_found.LectureNotFoundException;
 import sii.task.conference.exceptions.conflict.LoginTakenException;
 import sii.task.conference.repositories.LectureRepository;
@@ -58,6 +61,22 @@ public class ParticipantService {
         }
 
         sendMail(email, "Lecture has been booked.");
+    }
+
+    public void cancelBooked(String login, Long lectureId) throws Exception {
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(LectureNotFoundException::new);
+        List<Participant> participants = lecture.getParticipants().stream().filter((p) -> p.getLogin().equals(login)).toList();
+        if (participants.size() == 0) {
+            throw new NoReservationException();
+        }
+        Participant participant = participants.get(0);
+        try {
+            lecture.getParticipants().remove(participant);
+            lectureRepository.save(lecture);
+        } catch (OptimisticLockException ole) {
+            throw new AppOptimisticLockException();
+        }
+        sendMail(participant.getEmail(), "Your booking has been canceled");
     }
 
     @Async

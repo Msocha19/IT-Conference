@@ -20,7 +20,7 @@ public class LectureService {
         return lectureRepository.findAll();
     }
 
-    public List<Lecture> getParticipantLectures(String login) throws LectureNotFoundException {
+    public List<Lecture> getParticipantLectures(String login) {
         return lectureRepository.findLectureByParticipantsLogin(login);
     }
 }
