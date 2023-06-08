@@ -22,6 +22,4 @@ public class LectureService {
     public List<Lecture> getParticipantsLectures(String login) {
         return lectureRepository.findLectureByParticipantsLogin(login);
     }
-
-
 }
